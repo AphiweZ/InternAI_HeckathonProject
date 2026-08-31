@@ -1,0 +1,42 @@
+﻿@model List<InternAI_HeckathonProject.Models.Internship>
+
+@{
+    ViewBag.Title = "Available Internships";
+}
+
+<h2>Available Internships</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Company</th>
+            <th>Location</th>
+            <th>Required Skills</th>
+            <th>Deadline</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var internship in Model)
+        {
+            <tr>
+                <td>@internship.Title</td>
+                <td>@internship.Company</td>
+                <td>@internship.Location</td>
+                <td>@string.Join(", ", internship.RequiredSkills)</td>
+                <td>@internship.ApplicationDeadline.ToString("dd MMM yyyy")</td>
+                <td>
+                    <form action="@Url.Action("Add", "Tracker")" method="post">
+                        <input type="hidden" name="internshipId" value="@internship.Id" />
+                        <input type="hidden" name="title" value="@internship.Title" />
+                        <input type="hidden" name="company" value="@internship.Company" />
+                        <input type="hidden" name="deadline" value="@internship.ApplicationDeadline.ToString("yyyy-MM-dd")" />
+                        <button type="submit">Track this</button>
+                    </form>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

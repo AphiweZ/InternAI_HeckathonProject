@@ -1,0 +1,32 @@
+﻿[
+  {
+    "Id": 1,
+    "Title": "Software Engineering Intern",
+    "Company": "Nexora Systems",
+    "Location": "Remote",
+    "RequiredSkills": [ "C#", "SQL", "Git" ],
+    "Description": "Work on internal tooling and APIs.",
+    "ApplicationDeadline": "2026-09-15",
+    "ApplyUrl": "https://example.com/apply/1"
+  },
+  {
+    "Id": 2,
+    "Title": "Data Analyst Intern",
+    "Company": "Brightfield Analytics",
+    "Location": "Durban, ZA",
+    "RequiredSkills": [ "Python", "Excel", "SQL" ],
+    "Description": "Support the analytics team with reporting.",
+    "ApplicationDeadline": "2026-08-30",
+    "ApplyUrl": "https://example.com/apply/2"
+  },
+  {
+    "Id": 3,
+    "Title": "AI/ML Intern",
+    "Company": "Vantex Labs",
+    "Location": "Remote",
+    "RequiredSkills": [ "Python", "PyTorch", "Statistics" ],
+    "Description": "Assist with model training pipelines.",
+    "ApplicationDeadline": "2026-08-13",
+    "ApplyUrl": "https://example.com/apply/3"
+  }
+]

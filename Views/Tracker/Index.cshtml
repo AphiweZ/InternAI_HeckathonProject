@@ -1,0 +1,70 @@
+﻿@model List<InternAI_HeckathonProject.Models.Application>
+
+@{
+    ViewBag.Title = "My Application Tracker";
+}
+
+<h2>My Application Tracker</h2>
+
+@if (Model.Count == 0)
+{
+    <p>You haven't tracked any internships yet.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Company</th>
+                <th>Deadline</th>
+                <th>Status</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var app in Model)
+            {
+                // Work out how many days are left until the deadline,
+                // so we can visually flag urgent ones.
+                var daysLeft = (app.Deadline - System.DateTime.Now).Days;
+
+                // Pick a background colour based on urgency:
+                // red if very close, yellow if soon, no colour otherwise.
+                string rowStyle = "";
+                if (daysLeft <= 3)
+                {
+                    rowStyle = "background-color:#f8d7da;"; // light red
+                }
+                else if (daysLeft <= 7)
+                {
+                    rowStyle = "background-color:#fff3cd;"; // light yellow
+                }
+
+                <tr style="@rowStyle">
+                    <td>@app.InternshipTitle</td>
+                    <td>@app.Company</td>
+                    <td>
+                        @app.Deadline.ToString("dd MMM yyyy")
+                        <br />
+                        <small>(@daysLeft days left)</small>
+                    </td>
+                    <td>@app.Status</td>
+                    <td>
+                        <form action="@Url.Action("UpdateStatus", "Tracker")" method="post">
+                            <input type="hidden" name="id" value="@app.Id" />
+                            <select name="status">
+                                <option value="Not Applied" selected="@(app.Status == "Not Applied" ? "selected" : null)">Not Applied</option>
+                                <option value="Applied" selected="@(app.Status == "Applied" ? "selected" : null)">Applied</option>
+                                <option value="Interview" selected="@(app.Status == "Interview" ? "selected" : null)">Interview</option>
+                                <option value="Rejected" selected="@(app.Status == "Rejected" ? "selected" : null)">Rejected</option>
+                                <option value="Offer" selected="@(app.Status == "Offer" ? "selected" : null)">Offer</option>
+                            </select>
+                            <button type="submit">Update</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

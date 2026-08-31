@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Upload Your CV";
+}
+
+<h2>Upload Your CV</h2>
+
+@if (ViewBag.Error != null)
+{
+    <p style="color:red;">@ViewBag.Error</p>
+}
+
+<form action="@Url.Action("Index", "Upload")" method="post" enctype="multipart/form-data">
+    <input type="file" name="cvFile" />
+    <button type="submit">Upload and Match</button>
+</form>

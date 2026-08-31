@@ -1,0 +1,18 @@
+﻿@model List<InternAI_HeckathonProject.Models.RankedInternship>
+
+@{
+    ViewBag.Title = "Your Matched Internships";
+}
+
+<h2>Your Matched Internships</h2>
+
+@foreach (var result in Model)
+{
+    <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
+        <h4>@result.Internship.Title @@ @result.Internship.Company</h4>
+        <p>Match Score: @((result.MatchScore * 100).ToString("0")) %</p>
+        <p>Matched Skills: @string.Join(", ", result.MatchedSkills)</p>
+        <p>Missing Skills: @string.Join(", ", result.MissingSkills)</p>
+        <p><em>@result.CoverLetter</em></p>
+    </div>
+}
